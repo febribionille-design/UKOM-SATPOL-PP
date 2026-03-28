@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Uji Kompetensi Jafung Satpol PP</title>
+    <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuKg0wmXDKiBBcpKOhJx-eYM4Zx8HEIBpFNkroFocr-rhldYTZUD8I9o2-GpUyc_Ubg3COYy2Tmuwuutnmne1yOwCdlaO-Ha88AnzQO3JsZODw2pAufBWKHHNmUbocE_-mrDiJ1uV5gXDr2rjhXQGshlDbQo4tLSnisT3qCOfefHYatQSsmoZA0dyk-qfF/w400-h400/VEKTOR%20NEW%20LOGO%20(1)PNG.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .hero-pattern {
+            background-color: #0f172a;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath opacity='.5' d='M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 overflow-x-hidden">
+
+    <!-- Header / Navbar -->
+    <header class="fixed w-full top-0 z-50 bg-blue-800/60 backdrop-blur border-b border-gray-100">
+        <div class="container mx-auto px-2 py-1 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <div class="flex">
+                    <img src="https://aktivitas.landakkab.go.id/logo_melawi.png" alt="Logo Satpol PP" class="object-cover w-10 h-10">
+                    <img src="https://satpolpp.bogorkab.go.id/uploads/settings/17388147045798.png" alt="Logo Satpol PP" class="object-cover w-8 h-10">
+                </div>
+                <div class="leading-none">
+                    <span class="font-extrabold text-xl tracking-tighter text-white block">SIMULASI E-UKOM</span>
+                    <span class="text-[12px] font-bold text-yellow-300 uppercase tracking-widest">Belajar Mandiri</span>
+                </div>
+            </div>
+            <a style="display:none;" href="ukom.html" class="bg-blue-700 text-white px-5 py-4 rounded-xl text-xs font-bold hover:bg-blue-800 transition">
+                Uji Kompetensi Asli
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-pattern pt-20 pb-20 px-6 text-white overflow-hidden relative">
+        <div class="absolute top-20 right-0 w-96 h-96 bg-blue-600/20 rounded-full blur-[100px] -z-0"></div>
+        <div class="container mx-auto text-center relative z-10">
+            <div class="inline-flex items-center gap-2 bg-yellow-400/10 border border-yellow-400/30 px-4 py-2 rounded-full mb-8">
+                <span class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-yellow-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+                <span class="text-red-400 text-xs font-bold uppercase tracking-widest">Portal Simulasi Ujian</span>
+            </div>
+            
+            <h1 class="text-2xl md:text-6xl font-extrabold mb-8 leading-tight tracking-tight">
+                Simulasi Uji Kompetensi <br>
+                <span class="text-transparent text-lg bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Jafung Satpol PP Pemula-Terampil</span>
+            </h1>
+            
+            <div class="max-w-3xl mx-auto bg-white/5 backdrop-blur-sm border border-white/10 p-6 rounded-3xl mb-6">
+                <p class="text-blue-100 text-sm md:text-lg leading-relaxed font-light">
+                    Halaman ini merupakan <strong>Media Simulasi</strong> yang dirancang khusus untuk membantu Anggota Satpol PP jenjang Pemula dalam mempersiapkan diri menghadapi Uji Kompetensi kenaikan jenjang yang sesungguhnya.
+                </p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="ukom.html" class="group bg-blue-600 hover:bg-blue-900 text-white px-2 py-2 rounded-2xl text-lg font-bold transition flex items-center justify-center gap-2 shadow-xl shadow-blue-900/40">
+                    Easy Level
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                </a>
+                <a href="ukom2.html" class="group bg-red-600 hover:bg-red-900 text-white px-2 py-2 rounded-2xl text-lg font-bold transition flex items-center justify-center gap-2 shadow-xl shadow-blue-900/40">
+                    Hard Level 
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+                </a>
+                <a href="#penjelasan" class="bg-slate-800 hover:bg-slate-300 text-white hover:text-black px-2 py-2 rounded-2xl text-lg font-bold border border-slate-600 transition">
+                    Pelajari Teknis
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Disclaimer / Penjelasan Section -->
+    <section id="penjelasan" class="py-20 px-6">
+        <div class="container mx-auto">
+            <div class="bg-white rounded-[40px] shadow-2xl shadow-slate-200 overflow-hidden border border-slate-100 flex flex-col md:flex-row">
+                <div class="md:w-1/3 bg-blue-50 p-12 flex flex-col justify-center border-r border-slate-100">
+                    <h2 class="text-2xl font-black text-blue-900 mb-4 leading-tight">Mengenai Simulasi Ini</h2>
+                    <p class="text-slate-500 text-sm leading-relaxed mb-6">Pahami tujuan dari platform simulasi sebelum Anda memulai pengerjaan soal.</p>
+                    <div class="w-16 h-1 bg-blue-600 rounded-full"></div>
+                </div>
+                <div class="md:w-2/3 p-8 md:p-12">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                        <div class="space-y-3">
+                            <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold">01</div>
+                            <h4 class="font-bold text-slate-800">Bukan Ujian Resmi</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Nilai yang didapat dalam simulasi ini tidak bersifat mengikat dan tidak berpengaruh pada data kepegawaian resmi Anda.</p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="w-10 h-10 bg-green-100 text-green-600 rounded-xl flex items-center justify-center font-bold">02</div>
+                            <h4 class="font-bold text-slate-800">Adaptasi Sistem CBT</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Dirancang untuk membiasakan peserta dengan antarmuka sistem Computer Based Test (CBT) yang akan digunakan pada hari H.</p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="w-10 h-10 bg-purple-100 text-purple-600 rounded-xl flex items-center justify-center font-bold">03</div>
+                            <h4 class="font-bold text-slate-800">Evaluasi Mandiri</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Membantu Anda mengetahui sejauh mana penguasaan materi teknis, regulasi, dan tupoksi sebagai fungsional Satpol PP.</p>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="w-10 h-10 bg-yellow-100 text-yellow-600 rounded-xl flex items-center justify-center font-bold">04</div>
+                            <h4 class="font-bold text-slate-800">Tanpa Batas Percobaan</h4>
+                            <p class="text-xs text-slate-500 leading-relaxed">Anda diperbolehkan mencoba simulasi ini berulang kali untuk mengasah kecepatan dan ketepatan dalam menjawab soal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Detail -->
+    <section class="py-16 px-6 bg-slate-900 text-white">
+        <div class="container mx-auto max-w-5xl">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-black mb-4">Lingkup Materi Simulasi</h2>
+                <p class="text-slate-400">Soal-soal dalam simulasi mencakup pilar kompetensi utama:</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 border border-white/10 rounded-3xl hover:bg-white/5 transition">
+                    <div class="w-12 h-12 bg-blue-500/20 text-blue-400 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-4">Regulasi & Hukum</h3>
+                    <ul class="text-sm text-slate-400 space-y-2">
+                        <li>• PP No. 16 Tahun 2018</li>
+                        <li>• Permendagri Terkait</li>
+                        <li>• Penegakan Perda/Perkada</li>
+                    </ul>
+                </div>
+                
+                <div class="p-8 border border-white/10 rounded-3xl hover:bg-white/5 transition">
+                    <div class="w-12 h-12 bg-green-500/20 text-green-400 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-4">Tibum Tranmas</h3>
+                    <ul class="text-sm text-slate-400 space-y-2">
+                        <li>• Ketertiban Umum</li>
+                        <li>• Ketentraman Masyarakat</li>
+                        <li>• Perlindungan Masyarakat</li>
+                    </ul>
+                </div>
+
+                <div class="p-8 border border-white/10 rounded-3xl hover:bg-white/5 transition">
+                    <div class="w-12 h-12 bg-yellow-500/20 text-yellow-400 rounded-2xl flex items-center justify-center mb-6">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <h3 class="font-bold text-xl mb-4">Etika & Teknis</h3>
+                    <ul class="text-sm text-slate-400 space-y-2">
+                        <li>• Kode Etik Anggota</li>
+                        <li>• Teknik Persuasif</li>
+                        <li>• Administrasi Fungsional</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-100 py-12 px-6">
+        <div class="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-slate-800 rounded-lg">
+                    <img src="https://aktivitas.landakkab.go.id/logo_melawi.png" alt="Logo Satpol PP" class="object-cover w-10 h-10">
+                </div>
+                <span class="font-black text-slate-800 tracking-tighter uppercase">Simulasi E-UKOM</span>
+            </div>
+            <p class="text-slate-400 text-xs text-center">
+                Portal simulasi ini bersifat independen dan dibuat untuk tujuan edukasi anggota Satpol PP. <br>
+                &copy; 2026 Media Latihan Fungsional Satpol PP.
+            </p>
+            <div class="flex gap-4">
+                <span class="text-[10px] font-bold px-3 py-1 bg-slate-100 text-slate-500 rounded-full uppercase">EJOT.SQUAD</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

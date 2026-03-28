@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>UKOM EASY LEVEL</title>
+    <link rel="icon" href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiuKg0wmXDKiBBcpKOhJx-eYM4Zx8HEIBpFNkroFocr-rhldYTZUD8I9o2-GpUyc_Ubg3COYy2Tmuwuutnmne1yOwCdlaO-Ha88AnzQO3JsZODw2pAufBWKHHNmUbocE_-mrDiJ1uV5gXDr2rjhXQGshlDbQo4tLSnisT3qCOfefHYatQSsmoZA0dyk-qfF/w400-h400/VEKTOR%20NEW%20LOGO%20(1)PNG.png" type="image/png">
+    <link rel="https://" type="img/jpg" >
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #f8fafc;
+            /* Mencegah pull-to-refresh di mobile */
+            overscroll-behavior-y: contain;
+        }
+        
+        /* Custom Scrollbar for desktop */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; rounded: 10px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        .radio-custom:checked + div {
+            border-color: #2563eb;
+            background-color: #eff6ff;
+        }
+        .radio-custom:checked + div .radio-circle {
+            border-color: #2563eb;
+            background-color: #2563eb;
+        }
+        .radio-custom:checked + div .radio-circle::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        /* Utility classes */
+        .screen-hidden { display: none !important; }
+        .no-select { user-select: none; -webkit-user-select: none; }
+    </style>
+</head>
+<body class="text-slate-800 h-screen overflow-hidden flex flex-col no-select">
+
+    <!-- ========================================== -->
+    <!-- SCREEN 1: LOGIN / DATA DIRI                -->
+    <!-- ========================================== -->
+    <div id="login-screen" class="flex-1 flex items-center justify-center p-4 md:p-6 bg-slate-900 relative overflow-hidden">
+        <!-- Background decoration -->
+        <div class="absolute top-[-10%] left-[-10%] w-64 md:w-96 h-64 md:h-96 bg-blue-600/20 rounded-full blur-[100px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-64 md:w-96 h-64 md:h-96 bg-cyan-600/20 rounded-full blur-[100px]"></div>
+
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-lg overflow-hidden relative z-10">
+            <div class="bg-blue-700 p-6 md:p-8 text-white text-center">
+                <div class="w-14 h-14 md:w-16 md:h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 backdrop-blur-sm">
+                    <svg class="w-7 h-7 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                </div>
+                <h1 class="text-xl md:text-2xl font-bold mb-1">Portal Ujian CBT</h1>
+                <p class="text-blue-200 text-xs md:text-sm">Simulasi Uji Kompetensi Satpol PP</p>
+            </div>
+            
+            <form id="login-form" class="p-6 md:p-8 space-y-5" onsubmit="event.preventDefault(); startExam();">
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Nama Lengkap</label>
+                    <input type="text" id="input-nama" required class="w-full px-4 py-3 md:py-3.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition bg-slate-50 text-base" placeholder="Masukkan nama Anda">
+                </div>
+                <div>
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">NIP / NIK</label>
+                    <input type="text" id="input-nip" required inputmode="numeric" class="w-full px-4 py-3 md:py-3.5 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 transition bg-slate-50 text-base" placeholder="Masukkan NIP atau NIK">
+                </div>
+                
+                <div class="bg-yellow-50 border border-yellow-200 p-3 md:p-4 rounded-xl flex gap-3 items-start">
+                    <svg class="w-5 h-5 text-yellow-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <p class="text-xs text-yellow-800 leading-relaxed">
+                        Aplikasi akan masuk ke <strong>Mode Layar Penuh</strong> demi fokus ujian.
+                    </p>
+                </div>
+
+                <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3.5 md:py-4 rounded-xl transition shadow-lg shadow-blue-700/30 flex justify-center items-center gap-2 text-base md:text-lg">
+                    Mulai Ujian
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 2: EXAM / RUANG UJIAN               -->
+    <!-- ========================================== -->
+    <div id="exam-screen" class="screen-hidden flex-1 flex flex-col h-full bg-slate-50 relative">
+        
+        <!-- Header Ujian (Mobile Optimized) -->
+        <header class="bg-white border-b border-slate-200 px-3 md:px-6 py-3 flex justify-between items-center shadow-sm z-20 shrink-0">
+            <!-- Profil Singkat -->
+            <div class="flex items-center gap-3">
+                <div class="w-9 h-9 md:w-10 md:h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-700 font-bold text-sm md:text-base shrink-0" id="display-initial">A</div>
+                <div class="hidden sm:block">
+                    <h2 class="font-bold text-slate-800 leading-none text-sm md:text-base truncate max-w-[150px] md:max-w-[200px]" id="display-nama">Nama Peserta</h2>
+                    <span class="text-xs text-slate-500 truncate block max-w-[150px]" id="display-nip">NIP: -</span>
+                </div>
+            </div>
+            
+            <!-- Aksi Kanan -->
+            <div class="flex items-center gap-2 md:gap-4">
+                <!-- Timer -->
+                <div class="flex items-center gap-1.5 bg-slate-100 px-2.5 py-1.5 md:px-4 md:py-2 rounded-lg border border-slate-200">
+                    <svg class="w-4 h-4 md:w-5 md:h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span id="timer-display" class="font-mono font-bold text-sm md:text-lg text-slate-700">30:00</span>
+                </div>
+                
+                <!-- Tombol Layar Penuh (Ikon Saja di Mobile) -->
+                <button onclick="toggleFullScreen()" class="p-2 md:px-3 md:py-2 rounded-lg text-slate-600 hover:text-blue-600 bg-white border border-slate-200 hover:border-blue-200 transition flex items-center gap-2" title="Layar Penuh">
+                    <svg id="fullscreen-icon" class="w-5 h-5 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                    <span class="hidden md:inline text-sm font-semibold">Fokus</span>
+                </button>
+
+                <!-- Tombol Menu Mobile (Hanya muncul di HP) -->
+                <button onclick="toggleMobileNav()" class="md:hidden p-2 rounded-lg bg-blue-50 text-blue-700 border border-blue-200 flex items-center" title="Daftar Soal">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"></path></svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content (Soal & Navigasi) -->
+        <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative">
+            
+            <!-- Area Soal -->
+            <main class="flex-1 overflow-y-auto p-4 md:p-8 pb-24 md:pb-8 relative w-full">
+                <div class="max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 md:p-8 mb-6">
+                        <div class="flex justify-between items-center mb-5 pb-4 border-b border-slate-100">
+                            <span class="text-xs md:text-sm font-bold text-blue-600 tracking-wider uppercase">Soal <span id="current-q-num" class="text-base md:text-lg">1</span></span>
+                            <span class="text-[10px] md:text-xs text-slate-400 font-medium bg-slate-50 px-2 py-1 rounded" id="kategori-soal">Kategori</span>
+                        </div>
+                        
+                        <h3 class="text-base md:text-xl text-slate-800 leading-relaxed mb-6 font-medium" id="question-text">
+                            Memuat pertanyaan...
+                        </h3>
+                        
+                        <div class="space-y-3" id="options-container">
+                            <!-- Opsi akan dirender via JS -->
+                        </div>
+                    </div>
+
+                    <!-- Tombol Navigasi Bawah (Desktop: Terpisah, Mobile: Menempel di bawah) -->
+                    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-slate-200 md:static md:p-0 md:bg-transparent md:border-0 flex gap-3 md:justify-between items-center z-10 md:mt-6 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] md:shadow-none">
+                        <button onclick="prevQuestion()" id="btn-prev" class="flex-1 md:flex-none px-4 md:px-6 py-3 md:py-3 rounded-xl font-bold text-slate-600 bg-slate-50 md:bg-white border border-slate-200 hover:bg-slate-100 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-1 md:gap-2 text-sm md:text-base">
+                            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            <span class="hidden sm:inline">Sebelumnya</span>
+                            <span class="sm:hidden">Kembali</span>
+                        </button>
+                        
+                        <button onclick="nextQuestion()" id="btn-next" class="flex-1 md:flex-none px-4 md:px-6 py-3 md:py-3 rounded-xl font-bold text-white bg-blue-600 hover:bg-blue-700 transition shadow-lg shadow-blue-600/30 flex items-center justify-center gap-1 md:gap-2 text-sm md:text-base">
+                            Selanjutnya
+                            <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Overlay Sidebar Mobile -->
+            <div id="nav-overlay" class="fixed inset-0 bg-slate-900/60 z-30 hidden md:hidden backdrop-blur-sm transition-opacity" onclick="toggleMobileNav()"></div>
+
+            <!-- Sidebar Navigasi Nomor (Off-canvas di Mobile, Sticky di Desktop) -->
+            <aside id="nav-sidebar" class="fixed inset-y-0 right-0 z-40 w-72 bg-white transform translate-x-full transition-transform duration-300 ease-in-out md:relative md:translate-x-0 md:w-80 md:border-l md:border-slate-200 flex flex-col shrink-0 shadow-2xl md:shadow-none">
+                
+                <!-- Header Sidebar (Khusus Mobile untuk tombol Close) -->
+                <div class="p-4 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+                    <div>
+                        <h3 class="font-bold text-slate-800 text-sm">Navigasi Soal</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">Lompat ke nomor</p>
+                    </div>
+                    <button onclick="toggleMobileNav()" class="md:hidden p-2 text-slate-500 hover:bg-slate-200 rounded-lg">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                    </button>
+                </div>
+                
+                <!-- Grid Nomor -->
+                <div class="p-4 flex-1 overflow-y-auto">
+                    <div class="grid grid-cols-5 gap-2 md:gap-2" id="number-grid">
+                        <!-- Kotak nomor di-render via JS -->
+                    </div>
+                    
+                    <!-- Legenda -->
+                    <div class="mt-6 space-y-2 p-3 bg-slate-50 rounded-xl border border-slate-100">
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <div class="w-3.5 h-3.5 rounded bg-blue-600"></div> Sudah Dijawab
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <div class="w-3.5 h-3.5 rounded border border-slate-300 bg-white"></div> Belum Dijawab
+                        </div>
+                        <div class="flex items-center gap-2 text-xs text-slate-600">
+                            <div class="w-3.5 h-3.5 rounded border-2 border-slate-800 bg-white"></div> Posisi Saat Ini
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tombol Akhiri Ujian -->
+                <div class="p-4 border-t border-slate-200 bg-white">
+                    <button onclick="confirmFinish()" class="w-full py-3.5 md:py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition shadow-lg shadow-red-600/30 text-sm md:text-base">
+                        Selesaikan Ujian
+                    </button>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- SCREEN 3: HASIL UJIAN                      -->
+    <!-- ========================================== -->
+    <div id="result-screen" class="screen-hidden flex-1 flex items-center justify-center p-4 md:p-6 bg-slate-900 relative overflow-hidden h-full">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+CjxyZWN0IHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0idHJhbnNwYXJlbnQiPjwvcmVjdD4KPGNpcmNsZSBjeD0iMjAiIGN5PSIyMCIgcj0iMSIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjEpIj48L2NpcmNsZT4KPC9zdmc+')] opacity-50"></div>
+
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden relative z-10 text-center p-8 md:p-10">
+            <div class="w-16 h-16 md:w-20 md:h-20 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-5 md:mb-6">
+                <svg class="w-8 h-8 md:w-10 md:h-10 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            
+            <h2 class="text-xl md:text-2xl font-extrabold text-slate-800 mb-2">Ujian Selesai!</h2>
+            <p class="text-slate-500 text-xs md:text-sm mb-6 md:mb-8" id="result-message">Terima kasih telah menyelesaikan simulasi.</p>
+            
+            <div class="bg-slate-50 rounded-2xl p-5 md:p-6 mb-6 md:mb-8 border border-slate-100">
+                <p class="text-xs md:text-sm font-semibold text-slate-500 mb-1">Skor Anda</p>
+                <div class="text-5xl md:text-6xl font-black text-blue-600 mb-2" id="final-score">0</div>
+                <div class="flex justify-center gap-4 text-xs md:text-sm mt-4">
+                    <div class="text-green-600"><span id="correct-count" class="font-bold text-base">0</span> Benar</div>
+                    <div class="text-red-600"><span id="wrong-count" class="font-bold text-base">0</span> Salah</div>
+                </div>
+            </div>
+            
+            <button class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-3.5 md:py-4 rounded-xl transition text-sm md:text-base">
+                Kembali ke Beranda
+            <a href="index.html" class="absolute inset-0"></a>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Konfirmasi Selesai -->
+    <div id="confirm-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <div class="bg-white rounded-3xl p-6 md:p-8 max-w-sm w-full text-center shadow-2xl scale-95 transition-transform duration-200" id="modal-content">
+            <h3 class="text-lg md:text-xl font-bold text-slate-800 mb-2">Akhiri Ujian?</h3>
+            <p class="text-xs md:text-sm text-slate-500 mb-6" id="confirm-text">Pastikan semua jawaban sudah terisi.</p>
+            <div class="flex gap-3">
+                <button onclick="closeConfirmModal()" class="flex-1 bg-slate-100 text-slate-700 py-3 rounded-xl font-bold hover:bg-slate-200 transition text-sm md:text-base">Batal</button>
+                <button onclick="finishExam()" class="flex-1 bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition text-sm md:text-base">Ya, Selesai</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ==========================================
+        // DATA SOAL (MOCK DATA SATPOL PP)
+        // ==========================================
+        const examQuestions = [
+            {
+                kategori: "Regulasi",
+                pertanyaan: "Berdasarkan Peraturan Pemerintah (PP) No. 16 Tahun 2018, Satuan Polisi Pamong Praja dibentuk untuk menegakkan...",
+                opsi: [
+                    "Hukum Pidana Umum",
+                    "Peraturan Daerah (Perda) dan Peraturan Kepala Daerah (Perkada)",
+                    "Undang-Undang Lalu Lintas",
+                    "Peraturan Kepolisian Negara Republik Indonesia"
+                ],
+                jawabanBenar: 1
+            },
+            {
+                kategori: "Tibum Tranmas",
+                pertanyaan: "Tindakan pertama yang paling tepat dilakukan oleh anggota Satpol PP saat menemui Pedagang Kaki Lima (PKL) yang melanggar zona larangan berjualan adalah...",
+                opsi: [
+                    "Melakukan penyitaan barang dagangan secara langsung",
+                    "Memberikan teguran lisan secara persuasif dan humanis",
+                    "Melakukan pembongkaran paksa lapak dagangan",
+                    "Melaporkan kepada pihak Kepolisian"
+                ],
+                jawabanBenar: 1
+            },
+            {
+                kategori: "SOP & Teknis",
+                pertanyaan: "Dalam melaksanakan tugas patroli wilayah, pendekatan yang harus dikedepankan oleh Satpol PP adalah...",
+                opsi: [
+                    "Preventif dan Persuasif",
+                    "Represif dan Koersif",
+                    "Investigatif dan Interogatif",
+                    "Defensif dan Pasif"
+                ],
+                jawabanBenar: 0
+            },
+            {
+                kategori: "Etika Profesi",
+                pertanyaan: "Sikap yang mencerminkan profesionalisme Satpol PP saat berhadapan dengan masyarakat yang emosi/marah akibat penertiban adalah...",
+                opsi: [
+                    "Membalas dengan nada suara yang tinggi agar dihormati",
+                    "Meninggalkan lokasi penertiban untuk menghindari konflik",
+                    "Tetap tenang, tidak terpancing emosi, dan memberikan penjelasan rasional",
+                    "Meminta bantuan warga sekitar untuk menenangkan pelanggar"
+                ],
+                jawabanBenar: 2
+            },
+            {
+                kategori: "Regulasi",
+                pertanyaan: "Satpol PP dalam pelaksanaan tugasnya berkedudukan di bawah dan bertanggung jawab kepada...",
+                opsi: [
+                    "Kapolres setempat",
+                    "Menteri Dalam Negeri secara langsung",
+                    "Kepala Daerah (Gubernur/Bupati/Wali Kota)",
+                    "Komandan Kodim setempat"
+                ],
+                jawabanBenar: 2
+            },
+            {
+                kategori: "Wewenang",
+                pertanyaan: "Selain melakukan tindakan penertiban non-yustisial, pejabat Polisi Pamong Praja yang memenuhi persyaratan dapat diangkat menjadi...",
+                opsi: [
+                    "Penyidik Pembantu Polri",
+                    "Penyidik Pegawai Negeri Sipil (PPNS)",
+                    "Hakim Ad Hoc Tindak Pidana Ringan",
+                    "Jaksa Penuntut Umum Daerah"
+                ],
+                jawabanBenar: 1
+            },
+            {
+                kategori: "Tupoksi",
+                pertanyaan: "Sesuai dengan regulasi yang berlaku, penyelenggaraan Perlindungan Masyarakat (Linmas) di daerah merupakan urusan yang diampu oleh...",
+                opsi: [
+                    "Kepolisian Resor (Polres)",
+                    "Badan Penanggulangan Bencana Daerah (BPBD)",
+                    "Satuan Polisi Pamong Praja (Satpol PP)",
+                    "Dinas Sosial Daerah"
+                ],
+                jawabanBenar: 2
+            },
+            {
+                kategori: "SOP & Teknis",
+                pertanyaan: "Pelanggaran terhadap Peraturan Daerah (Perda) yang memiliki sanksi pidana kurungan atau denda diselesaikan melalui mekanisme...",
+                opsi: [
+                    "Sidang Perdata",
+                    "Sidang Tata Usaha Negara (TUN)",
+                    "Tindak Pidana Ringan (Tipiring)",
+                    "Mahkamah Konstitusi"
+                ],
+                jawabanBenar: 2
+            },
+            {
+                kategori: "Atribut & Seragam",
+                pertanyaan: "Pakaian Dinas Lapangan (PDL) Satpol PP umumnya dikhususkan penggunaannya untuk kegiatan...",
+                opsi: [
+                    "Upacara hari besar nasional",
+                    "Rapat paripurna di DPRD",
+                    "Operasi penertiban dan pengamanan di lapangan",
+                    "Penerimaan tamu kepala daerah di pendopo"
+                ],
+                jawabanBenar: 2
+            },
+            {
+                kategori: "Kepegawaian",
+                pertanyaan: "Batas usia pensiun bagi Pejabat Fungsional Polisi Pamong Praja jenjang Pemula dan Terampil sesuai aturan kepegawaian adalah...",
+                opsi: [
+                    "56 Tahun",
+                    "58 Tahun",
+                    "60 Tahun",
+                    "65 Tahun"
+                ],
+                jawabanBenar: 1
+            },
+            {
+                kategori: "SOP & Teknis",
+                pertanyaan: "Tindakan yang dilakukan oleh Pol PP untuk menjaga ketertiban umum terhadap pelanggaran Perda tanpa melalui proses peradilan disebut...",
+                opsi: [
+                    "Tindakan Yustisial",
+                    "Tindakan Non-Yustisial",
+                    "Tindakan Pidana",
+                    "Tindakan Represif Aktif"
+                ],
+                jawabanBenar: 1
+            },
+            {
+                kategori: "Etika Profesi",
+                pertanyaan: "Prinsip dasar Hak Asasi Manusia (HAM) yang harus dijunjung tinggi oleh anggota Satpol PP saat melaksanakan pembongkaran bangunan liar adalah...",
+                opsi: [
+                    "Melakukan pembongkaran di malam hari secara diam-diam",
+                    "Memberikan surat peringatan (SP) berjenjang dan tenggat waktu",
+                    "Menggunakan kekerasan jika warga menolak untuk pindah",
+                    "Menyita seluruh harta benda warga tanpa pendataan"
+                ],
+                jawabanBenar: 1
+            },
+            {
+                kategori: "Kepegawaian",
+                pertanyaan: "Sebagai Aparatur Sipil Negara (ASN), anggota Satpol PP wajib menerapkan core values 'BerAKHLAK'. Huruf 'A' pertama dalam akronim tersebut adalah...",
+                opsi: [
+                    "Adil",
+                    "Agamis",
+                    "Akuntabel",
+                    "Adaptif"
+                ],
+                jawabanBenar: 2
+            },
+            {
+                kategori: "SOP & Teknis",
+                pertanyaan: "Dalam kondisi terjadi kerusuhan massa yang membahayakan petugas saat penertiban, penggunaan tameng dan tongkat oleh Satpol PP diperbolehkan dengan tujuan...",
+                opsi: [
+                    "Menyerang warga secara agresif",
+                    "Sebagai alat pertahanan diri dan memecah massa",
+                    "Menakut-nakuti dan mengintimidasi masyarakat",
+                    "Menghukum provokator di lokasi kejadian"
+                ],
+                jawabanBenar: 1
+            },
+            {
+                kategori: "Wewenang",
+                pertanyaan: "Berikut ini yang termasuk sanksi administratif langsung yang dapat diberikan kepada pelanggar Perda oleh Satpol PP adalah...",
+                opsi: [
+                    "Kurungan penjara selama 3 bulan",
+                    "Penyitaan seluruh aset properti pribadi",
+                    "Pencabutan izin usaha atau penutupan lokasi sementara",
+                    "Kerja sosial menyapu jalan raya selama 1 bulan"
+                ],
+                jawabanBenar: 2
+            },
+            {
+                kategori: "Regulasi",
+                pertanyaan: "Pedoman Standar Operasional Prosedur (SOP) Satpol PP secara nasional diatur melalui peraturan yang ditetapkan oleh...",
+                opsi: [
+                    "Presiden Republik Indonesia",
+                    "Menteri Dalam Negeri",
+                    "Kepala Kepolisian Republik Indonesia",
+                    "Menteri Pendayagunaan Aparatur Negara"
+                ],
+                jawabanBenar: 1
+            },
+            {
+                kategori: "Tibum Tranmas",
+                pertanyaan: "Dalam menangani unjuk rasa yang berpotensi anarkis di area objek vital pemda, Satpol PP wajib berkoordinasi dan meminta *back-up* pengamanan kepada...",
+                opsi: [
+                    "Tokoh Agama atau Tokoh Masyarakat setempat",
+                    "Satuan Pengamanan (Satpam) Swasta",
+                    "Kepolisian Negara Republik Indonesia (Polri) dan TNI",
+                    "Organisasi Masyarakat (Ormas)"
+                ],
+                jawabanBenar: 2
+            },
+            {
+                kategori: "Kepegawaian",
+                pertanyaan: "Syarat minimal pendidikan formal untuk dapat diangkat pertama kali ke dalam Jabatan Fungsional Polisi Pamong Praja Kategori Keterampilan (Pemula) adalah...",
+                opsi: [
+                    "Sekolah Menengah Atas (SMA) atau sederajat",
+                    "Diploma Tiga (D3)",
+                    "Sarjana (S1)",
+                    "Sekolah Menengah Pertama (SMP)"
+                ],
+                jawabanBenar: 0
+            },
+            {
+                kategori: "Wewenang",
+                pertanyaan: "Dalam menjalankan tugas penertiban, Satpol PP dapat mengamankan barang bukti pelanggaran Perda dengan diwajibkan menyusun dokumen administratif berupa...",
+                opsi: [
+                    "Surat Keterangan Catatan Kepolisian (SKCK)",
+                    "Berita Acara Pemeriksaan (BAP) dan Berita Acara Penyitaan",
+                    "Surat Bukti Pelanggaran Lalu Lintas (Tilang)",
+                    "Surat Perintah Penghentian Penyidikan (SP3)"
+                ],
+                jawabanBenar: 1
+            },
+            {
+                kategori: "Etika Profesi",
+                pertanyaan: "Aturan mengenai potongan rambut, kerapian seragam, dan kelengkapan atribut Satpol PP diatur ketat dengan tujuan utama untuk...",
+                opsi: [
+                    "Meningkatkan wibawa, kedisiplinan, dan keseragaman jiwa korsa",
+                    "Menyamai standar dan penampilan prajurit militer",
+                    "Mengikuti tren mode dan gaya hidup kekinian",
+                    "Mewajibkan anggota membeli perlengkapan baru setiap tahun"
+                ],
+                jawabanBenar: 0
+            }
+        ];
+
+        // ==========================================
+        // STATE MANAGEMENT
+        // ==========================================
+        let currentUser = {};
+        let currentQuestionIndex = 0;
+        let userAnswers = new Array(examQuestions.length).fill(null);
+        let timeRemaining = 30 * 60; 
+        let timerInterval;
+
+        // ==========================================
+        // MOBILE NAV DRAWER (OFF-CANVAS)
+        // ==========================================
+        function toggleMobileNav() {
+            const sidebar = document.getElementById('nav-sidebar');
+            const overlay = document.getElementById('nav-overlay');
+            
+            if (sidebar.classList.contains('translate-x-full')) {
+                // Open Sidebar
+                sidebar.classList.remove('translate-x-full');
+                overlay.classList.remove('hidden');
+                setTimeout(() => overlay.classList.add('opacity-100'), 10);
+            } else {
+                // Close Sidebar
+                sidebar.classList.add('translate-x-full');
+                overlay.classList.remove('opacity-100');
+                setTimeout(() => overlay.classList.add('hidden'), 300);
+            }
+        }
+
+        // ==========================================
+        // FUNGSI LAYAR PENUH (FULLSCREEN API)
+        // ==========================================
+        function requestFullScreenMode() {
+            const docElm = document.documentElement;
+            if (docElm.requestFullscreen) docElm.requestFullscreen();
+            else if (docElm.mozRequestFullScreen) docElm.mozRequestFullScreen();
+            else if (docElm.webkitRequestFullscreen) docElm.webkitRequestFullscreen();
+            else if (docElm.msRequestFullscreen) docElm.msRequestFullscreen();
+            updateFullscreenIcon(true);
+        }
+
+        function exitFullScreenMode() {
+            if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement) {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                else if (document.msExitFullscreen) document.msExitFullscreen();
+            }
+            updateFullscreenIcon(false);
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                requestFullScreenMode();
+            } else {
+                exitFullScreenMode();
+            }
+        }
+
+        function updateFullscreenIcon(isFullscreen) {
+            const icon = document.getElementById('fullscreen-icon');
+            if(isFullscreen) {
+                icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 3v3a2 2 0 01-2 2H3m18 0h-3a2 2 0 01-2-2V3m0 18v-3a2 2 0 012-2h3M3 16h3a2 2 0 012 2v3"></path>`;
+            } else {
+                icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path>`;
+            }
+        }
+
+        document.addEventListener('fullscreenchange', () => {
+            updateFullscreenIcon(!!document.fullscreenElement);
+        });
+
+        // ==========================================
+        // FUNGSI UTAMA UJIAN
+        // ==========================================
+        function startExam() {
+            const nama = document.getElementById('input-nama').value;
+            const nip = document.getElementById('input-nip').value;
+            if(!nama || !nip) return;
+
+            currentUser = { nama, nip };
+
+            document.getElementById('display-nama').textContent = nama;
+            document.getElementById('display-nip').textContent = "NIP: " + nip;
+            document.getElementById('display-initial').textContent = nama.charAt(0).toUpperCase();
+
+            document.getElementById('login-screen').classList.add('screen-hidden');
+            document.getElementById('exam-screen').classList.remove('screen-hidden');
+
+            // Trigger Fullscreen
+            try { requestFullScreenMode(); } catch(e) { console.log("Fullscreen ditolak browser"); }
+
+            initGrid();
+            renderQuestion();
+            startTimer();
+        }
+
+        function renderQuestion() {
+            const q = examQuestions[currentQuestionIndex];
+            document.getElementById('current-q-num').textContent = currentQuestionIndex + 1;
+            document.getElementById('kategori-soal').textContent = q.kategori;
+            document.getElementById('question-text').textContent = q.pertanyaan;
+
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            q.opsi.forEach((opt, index) => {
+                const isChecked = userAnswers[currentQuestionIndex] === index ? 'checked' : '';
+                const optionLetters = ['A', 'B', 'C', 'D'];
+                
+                // Area klik (padding) dipertahankan besar agar mudah di tap jempol
+                const html = `
+                    <label class="block cursor-pointer relative group">
+                        <input type="radio" name="answer" class="sr-only radio-custom" value="${index}" onchange="selectAnswer(${index})" ${isChecked}>
+                        <div class="p-4 md:p-5 border border-slate-200 rounded-xl hover:bg-slate-50 transition flex items-start gap-3 md:gap-4 bg-white group-hover:border-blue-300">
+                            <div class="radio-circle w-5 h-5 md:w-5 md:h-5 border-2 border-slate-300 rounded-full flex-shrink-0 mt-0.5 relative transition"></div>
+                            <div class="flex-1">
+                                <span class="font-bold text-slate-700 mr-2 text-sm md:text-base">${optionLetters[index]}.</span>
+                                <span class="text-slate-600 leading-relaxed text-sm md:text-base">${opt}</span>
+                            </div>
+                        </div>
+                    </label>
+                `;
+                optionsContainer.insertAdjacentHTML('beforeend', html);
+            });
+
+            // Update Navigation Buttons
+            document.getElementById('btn-prev').disabled = currentQuestionIndex === 0;
+            
+            const btnNext = document.getElementById('btn-next');
+            if (currentQuestionIndex === examQuestions.length - 1) {
+                btnNext.innerHTML = 'Selesai <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>';
+                btnNext.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+                btnNext.classList.add('bg-green-600', 'hover:bg-green-700', 'shadow-green-600/30');
+                btnNext.onclick = confirmFinish;
+            } else {
+                btnNext.innerHTML = 'Selanjutnya <svg class="w-4 h-4 md:w-5 md:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
+                btnNext.classList.add('bg-blue-600', 'hover:bg-blue-700');
+                btnNext.classList.remove('bg-green-600', 'hover:bg-green-700', 'shadow-green-600/30');
+                btnNext.onclick = nextQuestion;
+            }
+
+            updateGrid();
+            
+            // Auto scroll ke atas soal jika di mobile
+            if(window.innerWidth < 768) {
+                document.querySelector('main').scrollTo({top: 0, behavior: 'smooth'});
+            }
+        }
+
+        function selectAnswer(index) {
+            userAnswers[currentQuestionIndex] = index;
+            updateGrid();
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < examQuestions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function jumpToQuestion(index) {
+            currentQuestionIndex = index;
+            renderQuestion();
+            // Tutup drawer di mobile secara otomatis setelah milih nomor soal
+            if (window.innerWidth < 768) {
+                toggleMobileNav();
+            }
+        }
+
+        // ==========================================
+        // GRID NUMBERING
+        // ==========================================
+        function initGrid() {
+            const grid = document.getElementById('number-grid');
+            grid.innerHTML = '';
+            for (let i = 0; i < examQuestions.length; i++) {
+                const btn = document.createElement('button');
+                btn.className = 'w-10 h-10 md:w-11 md:h-11 rounded border font-bold text-sm transition flex items-center justify-center';
+                btn.id = `grid-btn-${i}`;
+                btn.onclick = () => jumpToQuestion(i);
+                btn.textContent = i + 1;
+                grid.appendChild(btn);
+            }
+        }
+
+        function updateGrid() {
+            for (let i = 0; i < examQuestions.length; i++) {
+                const btn = document.getElementById(`grid-btn-${i}`);
+                btn.className = 'w-10 h-10 md:w-11 md:h-11 rounded font-bold text-sm transition flex items-center justify-center ';
+                
+                if (i === currentQuestionIndex) {
+                    btn.classList.add('border-2', 'border-slate-800', 'bg-white', 'text-slate-800'); 
+                } else if (userAnswers[i] !== null) {
+                    btn.classList.add('bg-blue-600', 'text-white', 'border-transparent', 'shadow-sm'); 
+                } else {
+                    btn.classList.add('border', 'border-slate-300', 'bg-white', 'text-slate-600', 'hover:bg-slate-100'); 
+                }
+            }
+        }
+
+        // ==========================================
+        // TIMER & PENYELESAIAN
+        // ==========================================
+        function startTimer() {
+            const display = document.getElementById('timer-display');
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                
+                let m = Math.floor(timeRemaining / 60);
+                let s = timeRemaining % 60;
+                
+                display.textContent = (m < 10 ? "0" + m : m) + ":" + (s < 10 ? "0" + s : s);
+
+                if(timeRemaining < 300) {
+                    display.classList.add('text-red-600');
+                    display.parentElement.classList.add('bg-red-50', 'border-red-200');
+                }
+
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    finishExam(true);
+                }
+            }, 1000);
+        }
+
+        function confirmFinish() {
+            const unanswered = userAnswers.filter(a => a === null).length;
+            const msgEl = document.getElementById('confirm-text');
+            
+            if (unanswered > 0) {
+                msgEl.innerHTML = `<span class="text-red-500 font-bold">Peringatan:</span> Anda masih memiliki <b>${unanswered}</b> soal yang belum dijawab. Yakin ingin mengakhiri ujian?`;
+            } else {
+                msgEl.textContent = "Semua soal telah dijawab. Yakin ingin menyimpan jawaban dan melihat hasil?";
+            }
+            
+            const modal = document.getElementById('confirm-modal');
+            modal.classList.remove('hidden');
+            setTimeout(() => document.getElementById('modal-content').classList.remove('scale-95'), 10);
+            
+            // Tutup sidebar jika sedang terbuka di mobile
+            if (window.innerWidth < 768 && !document.getElementById('nav-sidebar').classList.contains('translate-x-full')) {
+                toggleMobileNav();
+            }
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('modal-content').classList.add('scale-95');
+            setTimeout(() => document.getElementById('confirm-modal').classList.add('hidden'), 200);
+        }
+
+        function finishExam(isTimeOut = false) {
+            clearInterval(timerInterval);
+            document.getElementById('confirm-modal').classList.add('hidden');
+            
+            let correct = 0;
+            userAnswers.forEach((ans, index) => {
+                if (ans === examQuestions[index].jawabanBenar) correct++;
+            });
+            
+            const totalScore = Math.round((correct / examQuestions.length) * 100);
+            const wrong = examQuestions.length - correct;
+
+            document.getElementById('final-score').textContent = totalScore;
+            document.getElementById('correct-count').textContent = correct;
+            document.getElementById('wrong-count').textContent = wrong;
+            
+            if(isTimeOut) {
+                document.getElementById('result-message').textContent = "Waktu Habis! Jawaban Anda telah otomatis tersimpan.";
+            }
+
+            document.getElementById('exam-screen').classList.add('screen-hidden');
+            document.getElementById('result-screen').classList.remove('screen-hidden');
+
+            exitFullScreenMode();
+        }
+
+    </script>
+</body>
+</html>
